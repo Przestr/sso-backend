@@ -1,6 +1,9 @@
 package com.example.ssoserver;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.keycloak.KeycloakPrincipal;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.IDToken;
@@ -41,7 +44,9 @@ public class Controller {
         KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) request.getUserPrincipal();
         AccessToken accessToken = token.getAccount().getKeycloakSecurityContext().getToken();
 
-        HashMap<String, String> accessTokenData = new HashMap<String, String>();
+        KeycloakPrincipal principal=(KeycloakPrincipal)token.getPrincipal();
+
+        HashMap<String, String> accessTokenData = new HashMap<String, String>();;
         accessTokenData.put("Preferred Username: ", accessToken.getPreferredUsername());
         accessTokenData.put("Email verified:", accessToken.getEmailVerified().toString());
         accessTokenData.put("Scope:", accessToken.getScope());
@@ -55,6 +60,7 @@ public class Controller {
         accessTokenData.put("Family Name:", accessToken.getFamilyName());
         accessTokenData.put("Given Name:", accessToken.getGivenName());
         accessTokenData.put("Issuer:", accessToken.getIssuer());
+        accessTokenData.put("JWT:", principal.getKeycloakSecurityContext().getTokenString());
 
         return accessTokenData;
     }
