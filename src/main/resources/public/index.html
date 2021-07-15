@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Myneva Cloud Login Test</title>
+    <style>
+        body, form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            font-size: 24px;
+        }
+
+        div {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        div p {
+            margin-right: 8px;
+        }
+
+        div select {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome to Myneva Cloud Login Test</h2>
+    <h4>Select desired scope and click below button to test SSO-Server login flow:</h4>
+    <form name ="form" method="get" onSubmit="onSubmit()">
+        <div>
+            <p>Scope:</p>
+            <select id="formchoice">
+                <option value="/user.html">User</option>
+                <option value="/admin.html">Admin</option>
+            </select>
+        </div>
+        <button type="submit">Go</button>
+    </form>
+    <script>
+        function onSubmit() {
+            var e = document.getElementById("formchoice");
+            var formaction = e.options[e.selectedIndex].value;
+            document.form.action = formaction;
+        }
+    </script>
+</body>
+</html>
