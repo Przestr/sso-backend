@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Myneva Cloud Login Test</title>
+    <style>
+        body, form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            width: 80%;
+            height: 70vh;
+        }
+    </style>
+</head>
+<body>
+    <h2>Successfully reached USER resources!</h2>
+    <p>User info:</p>
+    <iframe></iframe>
+    <script>
+        var iframe = document.getElementsByTagName('iframe')[0];
+        iframe.src = window.location.origin + '/info';
+    </script>
+</body>
+</html>
